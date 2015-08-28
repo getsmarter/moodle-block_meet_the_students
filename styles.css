@@ -1,0 +1,20 @@
+.block_meet_the_students .content  {
+    margin: -2px;
+}
+
+.block_meet_the_students .user_icon {
+    display:inline-block;
+}
+
+.block_meet_the_students .user_margin {
+    margin: 2px;
+}
+
+.block_meet_the_students .user_picture {
+    width: 100%;
+    height: auto;
+}
+
+.block_meet_the_students .footer {
+    text-align: center;
+}
