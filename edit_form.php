@@ -16,11 +16,11 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'block_meet_the_students', language 'en'
+ * Edit block page
  *
  * @package    block_meet_the_students
- * @copyright  2014 Mikhail Janowski <mikhail@getsmarter.co.za>
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @copyright  2014 GetSmarter {@link http://www.getsmarter.co.za}
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 class block_meet_the_students_edit_form extends block_edit_form {

@@ -1,4 +1,5 @@
 <?php
+
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -17,13 +18,13 @@
 /**
  * Meet the Students block
  *
- * @package   block_meet_the_students
- * @copyright 1999 onwards Martin Dougiamas  {@link http://moodle.com}
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package    block_meet_the_students
+ * @copyright  2014 GetSmarter {@link http://www.getsmarter.co.za}
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 class block_meet_the_students extends block_base {
-    
+
     function init() {
         $this->title = get_string('pluginname', 'block_meet_the_students');
     }
@@ -65,7 +66,7 @@ class block_meet_the_students extends block_base {
         $maxusers = $numcolumns * $numrows;
         $width = ' style="width:'.round(100/$numcolumns, 2).'%;"';
 
-        // Get the users to display 
+        // Get the users to display
         $context = context_course::instance($PAGE->course->id);
          // Only with profile pictures
 
@@ -74,7 +75,7 @@ class block_meet_the_students extends block_base {
         }
         else{
             $users = get_enrolled_users($context);
-        }       
+        }
         // Remove own profile
         unset($users[$USER->id]);
 
@@ -98,7 +99,7 @@ class block_meet_the_students extends block_base {
                 return ($a->lastaccess < $b->lastaccess) ? 1 : -1;
             }
         });
-        
+
         // Render block contents
         $this->content = new stdClass;
         $this->content->text = '';
@@ -106,7 +107,7 @@ class block_meet_the_students extends block_base {
 
         $numusers = count($users);
         for ($i = 0; $i < $maxusers && $i < $numusers; $i++) {
-            
+
             $this->content->text .= '<div class="user_icon" '.$width.'><div class="user_margin">';
             $this->content->text .= $OUTPUT->user_picture($users[$i], array('size' => 100, 'class' => 'user_picture'));
             $this->content->text .= '</div></div>';

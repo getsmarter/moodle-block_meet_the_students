@@ -1,4 +1,5 @@
 <?php
+
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -18,8 +19,8 @@
  * Strings for component 'block_meet_the_students', language 'en'
  *
  * @package    block_meet_the_students
- * @copyright  2014 Mikhail Janowski <mikhail@getsmarter.co.za>
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @copyright  2014 GetSmarter {@link http://www.getsmarter.co.za}
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 $string['login:addinstance'] = 'Add a new Meet the Students block';
