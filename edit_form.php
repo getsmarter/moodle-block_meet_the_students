@@ -48,18 +48,10 @@ class block_meet_the_students_edit_form extends block_edit_form {
         $mform->addElement('advcheckbox', 'config_onlywithpic', get_string('onlywithpic', 'block_meet_the_students'));
         $mform->setDefault('config_onlywithpic', $config->onlywithpic);
 
-        // get user roles
-        $roles=$DB->get_records('role');
-        $userroles = array();
-        $default= "All";
-        $userroles[0] = $default;
-        // create an array of roles for select box
-        foreach($roles as $r){
-            $userroles[$r->id] = $r->shortname;
-        }
-
-        //Only with role type
-        $mform->addElement('select', 'config_onlywithrole', get_string('onlywithrole', 'block_meet_the_students'), $userroles);
+        // Only with specific role
+        $roles = get_assignable_roles(context_course::instance(1));
+        $roles[0] = 'All';
+        $mform->addElement('select', 'config_onlywithrole', get_string('onlywithrole', 'block_meet_the_students'), $roles);
         $mform->setDefault('config_onlywithrole', $config->onlywithrole);
     }
 }

@@ -16,7 +16,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Settings page
+ * Default settings page
  *
  * @package    block_meet_the_students
  * @copyright  2014 GetSmarter {@link http://www.getsmarter.co.za}
@@ -26,23 +26,35 @@
 defined('MOODLE_INTERNAL') || die;
 
 if ($ADMIN->fulltree) {
-    $settings->add(new admin_setting_configselect('block_meet_the_students/numcolumns', get_string('numcolumns', 'block_meet_the_students'),
-                    get_string('numcolumnsdesc', 'block_meet_the_students'), 2, array(1, 2, 3, 4, 5)));
+    $name = 'block_meet_the_students/numcolumns';
+    $title = get_string('numcolumns', 'block_meet_the_students');
+    $description = get_string('numcolumnsdesc', 'block_meet_the_students');
+    $default = 2;
+    $choices = array(1, 2, 3, 4, 5);
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $settings->add($setting);
 
-    $settings->add(new admin_setting_configselect('block_meet_the_students/numrows', get_string('numrows', 'block_meet_the_students'),
-                    get_string('numrowsdesc', 'block_meet_the_students'), 3, array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20)));
+    $name = 'block_meet_the_students/numrows';
+    $title = get_string('numrows', 'block_meet_the_students');
+    $description = get_string('numrowsdesc', 'block_meet_the_students');
+    $default = 3;
+    $choices = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20);
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $settings->add($setting);
 
-    $settings->add(new admin_setting_configcheckbox('block_meet_the_students/onlywithpic', get_string('onlywithpic', 'block_meet_the_students'),
-                       get_string('onlywithpicdesc', 'block_meet_the_students'), 1));
-    // get user roles
-    $roles=$DB->get_records('role');
-    $userroles = array();
-    $default= "All";
-    $userroles[0] = $default;
-    // create an array of roles for select box
-    foreach($roles as $r){
-    	$userroles[$r->id] = $r->shortname;
-    }
-    $settings->add(new admin_setting_configselect('block_meet_the_students/onlywithrole', get_string('onlywithrole', 'block_meet_the_students'),
-                    get_string('onlywithroledesc', 'block_meet_the_students'), '0',  $userroles));
+    $name = 'block_meet_the_students/onlywithpic';
+    $title = get_string('onlywithpic', 'block_meet_the_students');
+    $description = get_string('onlywithpicdesc', 'block_meet_the_students');
+    $default = 1;
+    $setting = new admin_setting_configcheckbox($name, $title, $description, $default);
+    $settings->add($setting);
+
+    $name = 'block_meet_the_students/onlywithrole';
+    $title = get_string('onlywithrole', 'block_meet_the_students');
+    $description = get_string('onlywithroledesc', 'block_meet_the_students');
+    $default = '0';
+    $choices = get_assignable_roles(context_course::instance(1));
+    $choices[0] = 'All';
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $settings->add($setting);
 }
