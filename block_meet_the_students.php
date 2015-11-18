@@ -22,20 +22,39 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+/**
+ * This class overrides some block properties and generates the block content
+ *
+ * @package    block_meet_the_students
+ * @copyright  2014 GetSmarter {@link http://www.getsmarter.co.za}
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class block_meet_the_students extends block_base {
 
+    /**
+     * Initialize the block
+     */
     public function init() {
         $this->title = get_string('pluginname', 'block_meet_the_students');
     }
 
+    /**
+     * Check if block has config
+     */
     public function has_config() {
         return true;
     }
 
+    /**
+     * Check block formats
+     */
     public function applicable_formats() {
         return array('all' => true);
     }
 
+    /**
+     * Block title
+     */
     public function specialization() {
         if (isset($this->config->title)) {
             $this->title = format_string($this->config->title);
@@ -44,10 +63,16 @@ class block_meet_the_students extends block_base {
         }
     }
 
+    /**
+     * Allow multiple blocks
+     */
     public function instance_allow_multiple() {
         return true;
     }
 
+    /**
+     * Generate block content
+     */
     public function get_content() {
         global $CFG;
         global $PAGE;

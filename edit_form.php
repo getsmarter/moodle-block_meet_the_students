@@ -22,7 +22,19 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+/**
+ * This class adds custom form fields
+ *
+ * @package    block_meet_the_students
+ * @copyright  2014 GetSmarter {@link http://www.getsmarter.co.za}
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class block_meet_the_students_edit_form extends block_edit_form {
+
+    /**
+     * Add form fields specific to this block
+     * @param object $mform the form being built
+     */
     protected function specific_definition($mform) {
         global $DB;
         $config = get_config('block_meet_the_students');
