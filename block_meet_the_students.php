@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -25,27 +24,31 @@
 
 class block_meet_the_students extends block_base {
 
-    function init() {
+    public function init() {
         $this->title = get_string('pluginname', 'block_meet_the_students');
     }
 
-    function has_config() {
+    public function has_config() {
         return true;
     }
 
-    function applicable_formats() {
+    public function applicable_formats() {
         return array('all' => true);
     }
 
-    function specialization() {
-        $this->title = isset($this->config->title) ? format_string($this->config->title) : format_string(get_string('pluginname', 'block_meet_the_students'));
+    public function specialization() {
+        if (isset($this->config->title)) {
+            $this->title = format_string($this->config->title);
+        } else {
+            $this->title = format_string(get_string('pluginname', 'block_meet_the_students'));
+        }
     }
 
-    function instance_allow_multiple() {
+    public function instance_allow_multiple() {
         return true;
     }
 
-    function get_content() {
+    public function get_content() {
         global $CFG;
         global $PAGE;
         global $OUTPUT;
@@ -53,54 +56,52 @@ class block_meet_the_students extends block_base {
 
         require_once($CFG->libdir . '/filelib.php');
 
-        if ($this->content !== NULL) {
+        if ($this->content !== null) {
             return $this->content;
         }
 
-        // Get block settings or defaults
-        $config = get_config('block_meet_the_students'); // defaults
+        // Get block settings or defaults.
+        $config = get_config('block_meet_the_students'); // Defaults.
         $onlywithrole = isset($this->config->onlywithrole) ? $this->config->onlywithrole : $config->onlywithrole;
         $onlywithpic = isset($this->config->onlywithpic) ? $this->config->onlywithpic : $config->onlywithpic;
         $numcolumns = (isset($this->config->numcolumns) ? $this->config->numcolumns : $config->numcolumns) + 1;
         $numrows = (isset($this->config->numrows) ? $this->config->numrows : $config->numrows) + 1;
         $maxusers = $numcolumns * $numrows;
-        $width = ' style="width:'.round(100/$numcolumns, 2).'%;"';
+        $width = ' style="width:'.round(100 / $numcolumns, 2).'%;"';
 
-        // Get the users to display
+        // Get the users to display.
         $context = context_course::instance($PAGE->course->id);
-         // Only with profile pictures
+         // Only with profile pictures.
 
-        if($onlywithrole>0) {
-           $users = get_role_users($onlywithrole,$context);
-        }
-        else{
+        if ($onlywithrole > 0) {
+            $users = get_role_users($onlywithrole, $context);
+        } else {
             $users = get_enrolled_users($context);
         }
-        // Remove own profile
+        // Remove own profile.
         unset($users[$USER->id]);
 
-        // Only with profile pictures
-        if($onlywithpic) {
+        // Only with profile pictures.
+        if ($onlywithpic) {
             $tempusers = array();
             foreach ($users as $value) {
-                if($value->picture != '0') {
+                if ($value->picture != '0') {
                     $tempusers[] = $value;
                 }
             }
             $users = $tempusers;
         }
 
-        // Order by last access
+        // Order by last access.
         usort($users, function ($a, $b) {
             if ($a->lastaccess == $b->lastaccess) {
                 return 0;
-            }
-            else {
+            } else {
                 return ($a->lastaccess < $b->lastaccess) ? 1 : -1;
             }
         });
 
-        // Render block contents
+        // Render block contents.
         $this->content = new stdClass;
         $this->content->text = '';
         $this->content->text .= '<div class="meet_the_students">';
@@ -114,10 +115,10 @@ class block_meet_the_students extends block_base {
         }
 
         $this->content->text .= '</div>';
-        $this->content->footer = '<a href="/user/index.php?contextid='.$context->id.'"><img src="'.$OUTPUT->pix_url('i/users').'" class="icon" alt="">'.get_string('meetall', 'block_meet_the_students').'</a>';
+        $this->content->footer = '<a href="/user/index.php?contextid='.$context->id.'">';
+        $this->content->footer .= '<img src="'.$OUTPUT->pix_url('i/users').'" class="icon" alt="">';
+        $this->content->footer .= get_string('meetall', 'block_meet_the_students').'</a>';
         return $this->content;
     }
 
 }
-
-
