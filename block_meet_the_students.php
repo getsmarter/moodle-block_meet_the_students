@@ -49,7 +49,7 @@ class block_meet_the_students extends block_base {
      * Check block formats
      */
     public function applicable_formats() {
-        return array('all' => true);
+        return array('course' => true);
     }
 
     /**
