@@ -74,16 +74,45 @@ class block_meet_the_students extends block_base {
      * Generate block content
      */
     public function get_content() {
-        global $CFG;
-        global $PAGE;
-        global $OUTPUT;
-        global $USER;
+        global $OUTPUT, $PAGE, $CFG;
 
         require_once($CFG->libdir . '/filelib.php');
 
         if ($this->content !== null) {
             return $this->content;
         }
+
+        $context = context_course::instance($PAGE->course->id);
+        $canviewuserdetails = has_capability('moodle/user:viewdetails', $context);
+
+        // Render block contents.
+        $this->content = new stdClass;
+        $this->content->text = '';
+        $this->content->text .= '<div class="meet_the_students">';
+
+        if ($canviewuserdetails) {
+            $this->content->text .= $this->render_user_pictures($context);
+        } else {
+            $this->content->text .= '<p>'.get_string('cannotviewuserdetails', 'block_meet_the_students').'</p>';
+        }
+
+        $this->content->text .= '</div>';
+
+        if ($canviewuserdetails) {
+            $this->content->footer = '<a href="/user/index.php?contextid='.$context->id.'">';
+            $this->content->footer .= '<img src="'.$OUTPUT->pix_url('i/users').'" class="icon" alt="">';
+            $this->content->footer .= get_string('meetall', 'block_meet_the_students').'</a>';
+        }
+
+        return $this->content;
+    }
+
+    /**
+     * Render user profile pictures
+     * @param object $context the context
+     */
+    protected function render_user_pictures($context) {
+        global $OUTPUT, $USER;
 
         // Get block settings or defaults.
         $config = get_config('block_meet_the_students'); // Defaults.
@@ -95,18 +124,17 @@ class block_meet_the_students extends block_base {
         $width = ' style="width:'.round(100 / $numcolumns, 2).'%;"';
 
         // Get the users to display.
-        $context = context_course::instance($PAGE->course->id);
-         // Only with profile pictures.
-
+        // Only users with specific role.
         if ($onlywithrole > 0) {
             $users = get_role_users($onlywithrole, $context);
         } else {
             $users = get_enrolled_users($context);
         }
+
         // Remove own profile.
         unset($users[$USER->id]);
 
-        // Only with profile pictures.
+        // Only users with profile pictures.
         if ($onlywithpic) {
             $tempusers = array();
             foreach ($users as $value) {
@@ -126,24 +154,15 @@ class block_meet_the_students extends block_base {
             }
         });
 
-        // Render block contents.
-        $this->content = new stdClass;
-        $this->content->text = '';
-        $this->content->text .= '<div class="meet_the_students">';
-
+        // Render profiles.
+        $html = '';
         $numusers = count($users);
         for ($i = 0; $i < $maxusers && $i < $numusers; $i++) {
 
-            $this->content->text .= '<div class="user_icon" '.$width.'><div class="user_margin">';
-            $this->content->text .= $OUTPUT->user_picture($users[$i], array('size' => 100, 'class' => 'user_picture'));
-            $this->content->text .= '</div></div>';
+            $html .= '<div class="user_icon" '.$width.'><div class="user_margin">';
+            $html .= $OUTPUT->user_picture($users[$i], array('size' => 100, 'class' => 'user_picture'));
+            $html .= '</div></div>';
         }
-
-        $this->content->text .= '</div>';
-        $this->content->footer = '<a href="/user/index.php?contextid='.$context->id.'">';
-        $this->content->footer .= '<img src="'.$OUTPUT->pix_url('i/users').'" class="icon" alt="">';
-        $this->content->footer .= get_string('meetall', 'block_meet_the_students').'</a>';
-        return $this->content;
+        return $html;
     }
-
 }
