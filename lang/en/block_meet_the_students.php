@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -23,7 +22,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['login:addinstance'] = 'Add a new Meet the Students block';
+$string['meet_the_students:addinstance'] = 'Add a new Meet the Students block';
 $string['pluginname'] = 'Meet the Students';
 $string['meetall'] = 'Meet all learners';
 
@@ -38,3 +37,5 @@ $string['onlywithpicdesc'] = 'By default only display users with profile picture
 
 $string['onlywithrole'] = 'Only Users with a particular role';
 $string['onlywithroledesc'] = 'By default display all users.';
+
+$string['cannotviewuserdetails'] = 'You do not have permission to view user profiles.';
