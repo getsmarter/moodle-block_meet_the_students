@@ -22,7 +22,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['login:addinstance'] = 'Add a new Meet the Students block';
+$string['meet_the_students:addinstance'] = 'Add a new Meet the Students block';
 $string['pluginname'] = 'Meet the Students';
 $string['meetall'] = 'Meet all learners';
 
