@@ -88,20 +88,22 @@ class block_meet_the_students extends block_base {
         // Render block contents.
         $this->content = new stdClass;
         $this->content->text = '';
-        $this->content->text .= '<div class="meet_the_students">';
+        $this->content->text .= html_writer::start_tag('div', array('class' => 'meet_the_students'));
 
         if ($canviewuserdetails) {
             $this->content->text .= $this->render_user_pictures($context);
         } else {
-            $this->content->text .= '<p>'.get_string('cannotviewuserdetails', 'block_meet_the_students').'</p>';
+            $this->content->text .= html_writer::tag('p', get_string('cannotviewuserdetails', 'block_meet_the_students'));
         }
 
-        $this->content->text .= '</div>';
+        $this->content->text .= html_writer::end_tag('div');
 
         if ($canviewuserdetails) {
-            $this->content->footer = '<a href="/user/index.php?contextid='.$context->id.'">';
-            $this->content->footer .= '<img src="'.$OUTPUT->pix_url('i/users').'" class="icon" alt="">';
-            $this->content->footer .= get_string('meetall', 'block_meet_the_students').'</a>';
+            $meetallstudentsurl = new moodle_url('/user/index.php', array('contextid' => $context->id));
+            $text = get_string('meetall', 'block_meet_the_students');
+            $meetallstudentsanchor = html_writer::empty_tag('img', array('src' => $OUTPUT->pix_url('i/users'), 'alt' => $text));
+            $meetallstudentsanchor .= ' ' . $text;
+            $this->content->footer = html_writer::link($meetallstudentsurl, $meetallstudentsanchor);
         }
 
         return $this->content;
@@ -121,7 +123,7 @@ class block_meet_the_students extends block_base {
         $numcolumns = (isset($this->config->numcolumns) ? $this->config->numcolumns : $config->numcolumns) + 1;
         $numrows = (isset($this->config->numrows) ? $this->config->numrows : $config->numrows) + 1;
         $maxusers = $numcolumns * $numrows;
-        $width = ' style="width:'.round(100 / $numcolumns, 2).'%;"';
+        $style = 'width: ' . round(100 / $numcolumns, 2) . '%;';
 
         // Get the users to display.
         // Only users with specific role.
@@ -159,9 +161,9 @@ class block_meet_the_students extends block_base {
         $numusers = count($users);
         for ($i = 0; $i < $maxusers && $i < $numusers; $i++) {
 
-            $html .= '<div class="user_icon" '.$width.'><div class="user_margin">';
+            $html .= html_writer::start_tag('div', array('class' => 'user_icon', 'style' => $style));
             $html .= $OUTPUT->user_picture($users[$i], array('size' => 100, 'class' => 'user_picture'));
-            $html .= '</div></div>';
+            $html .= html_writer::end_tag('div');
         }
         return $html;
     }
