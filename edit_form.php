@@ -61,6 +61,10 @@ class block_meet_the_students_edit_form extends block_edit_form {
         $mform->addElement('advcheckbox', 'config_onlywithpic', get_string('onlywithpic', 'block_meet_the_students'));
         $mform->setDefault('config_onlywithpic', $config->onlywithpic);
 
+        // Display Current User
+        $mform->addElement('advcheckbox', 'config_displaycurrentuser', get_string('displaycurrentuser', 'block_meet_the_students'));
+        $mform->setDefault('config_displaycurrentuser', $config->displaycurrentuser);
+
         // Only with specific role.
         $roles = get_assignable_roles(context_course::instance(1));
         $roles[0] = 'All';

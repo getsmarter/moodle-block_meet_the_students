@@ -35,6 +35,9 @@ $string['numrowsdesc'] = 'Default number of rows of profiles to display for new 
 $string['onlywithpic'] = 'Only Users with Picture';
 $string['onlywithpicdesc'] = 'By default only display users with profile pictures for new blocks.';
 
+$string['displaycurrentuser'] = 'User Can See Themselves';
+$string['displaycurrentuserdesc'] = 'By default do not display themselves to the user';
+
 $string['onlywithrole'] = 'Only Users with a particular role';
 $string['onlywithroledesc'] = 'By default display all users.';
 

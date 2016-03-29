@@ -48,6 +48,13 @@ if ($ADMIN->fulltree) {
     $setting = new admin_setting_configcheckbox($name, $title, $description, $default);
     $settings->add($setting);
 
+    $name = 'block_meet_the_students/displaycurrentuser';
+    $title = get_string('displaycurrentuser', 'block_meet_the_students');
+    $description = get_string('displaycurrentuserdesc', 'block_meet_the_students');
+    $default = 0;
+    $setting = new admin_setting_configcheckbox($name, $title, $description, $default);
+    $settings->add($setting);
+
     $name = 'block_meet_the_students/onlywithrole';
     $title = get_string('onlywithrole', 'block_meet_the_students');
     $description = get_string('onlywithroledesc', 'block_meet_the_students');

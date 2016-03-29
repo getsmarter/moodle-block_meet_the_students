@@ -120,6 +120,7 @@ class block_meet_the_students extends block_base {
         $config = get_config('block_meet_the_students'); // Defaults.
         $onlywithrole = isset($this->config->onlywithrole) ? $this->config->onlywithrole : $config->onlywithrole;
         $onlywithpic = isset($this->config->onlywithpic) ? $this->config->onlywithpic : $config->onlywithpic;
+        $displaycurrentuser = isset($this->config->displaycurrentuser) ? $this->config->displaycurrentuser : $config->displaycurrentuser;
         $numcolumns = (isset($this->config->numcolumns) ? $this->config->numcolumns : $config->numcolumns) + 1;
         $numrows = (isset($this->config->numrows) ? $this->config->numrows : $config->numrows) + 1;
         $maxusers = $numcolumns * $numrows;
@@ -133,8 +134,10 @@ class block_meet_the_students extends block_base {
             $users = get_enrolled_users($context);
         }
 
-        // Remove own profile.
-        unset($users[$USER->id]);
+        if (!$displaycurrentuser) {
+            // Remove own profile.
+            unset($users[$USER->id]);
+        }
 
         // Only users with profile pictures.
         if ($onlywithpic) {
