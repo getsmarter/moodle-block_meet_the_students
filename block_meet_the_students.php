@@ -101,7 +101,12 @@ class block_meet_the_students extends block_base {
         if ($canviewuserdetails) {
             $meetallstudentsurl = new moodle_url('/user/index.php', array('contextid' => $context->id));
             $text = get_string('meetall', 'block_meet_the_students');
-            $meetallstudentsanchor = html_writer::empty_tag('img', array('src' => $OUTPUT->pix_url('i/users'), 'alt' => $text));
+            if ($CFG->branch >= 33) { // Moodle 3.3+.
+                $pixurl = $OUTPUT->image_url('i/users');
+            } else {
+                $pixurl = $OUTPUT->pix_url('i/users');
+            }
+            $meetallstudentsanchor = html_writer::empty_tag('img', array('src' => $pixurl, 'alt' => $text));
             $meetallstudentsanchor .= ' ' . $text;
             $this->content->footer = html_writer::link($meetallstudentsurl, $meetallstudentsanchor);
         }
