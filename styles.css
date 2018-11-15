@@ -18,3 +18,14 @@
 .block_meet_the_students .footer {
     text-align: center;
 }
+
+/* Temp fix until converted to plugin */
+#page-blocks-meet_the_students-course #region-main .card-block {
+    display: inline;
+    padding: 0;
+    border: none;
+}
+
+#page-blocks-meet_the_students-course [data-region="blocks-column"] {
+    width: 100% !important;
+}
