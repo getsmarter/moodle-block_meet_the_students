@@ -29,3 +29,16 @@
 #page-blocks-meet_the_students-course [data-region="blocks-column"] {
     width: 100% !important;
 }
+
+#page-blocks-meet_the_students-course .card-title {
+    font-size: 36px !important;
+    text-align: left;
+}
+
+#page-blocks-meet_the_students-course a {
+    border-bottom: 1px dashed #bbb !important;
+}
+
+#page-blocks-meet_the_students-course a:hover {
+    border-bottom: solid !important;
+}

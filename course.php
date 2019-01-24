@@ -25,7 +25,7 @@ $PAGE->set_url(
 $context = context_course::instance($course->id);
 $PAGE->set_course($course);
 $PAGE->set_context($context);
-$title = get_string('pluginname', 'block_meet_the_students');
+$title = $PAGE->course->shortname.': '.get_string('newpluginname', 'block_meet_the_students');;
 $PAGE->set_title($title);
 $PAGE->set_heading($title);
 $PAGE->navbar->add($title);
