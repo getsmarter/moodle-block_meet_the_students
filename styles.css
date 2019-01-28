@@ -35,10 +35,10 @@
     text-align: left;
 }
 
-#page-blocks-meet_the_students-course .block.block_meet_the_students.block_with_controls a {
+#page-blocks-meet_the_students-course [data-block="meet_the_students"] .footer a {
     border-bottom: 1px dashed #bbb !important;
 }
 
-#page-blocks-meet_the_students-course .block.block_meet_the_students.block_with_controls a:hover {
+#page-blocks-meet_the_students-course [data-block="meet_the_students"] .footer a:hover {
     border-bottom: solid !important;
 }
