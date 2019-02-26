@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'block_meet_the_students'; // Full name of the plugin (used for diagnostics).
-$plugin->version   = 2015120300;                // The current plugin version (Date: YYYYMMDDXX).
+$plugin->version   = 2019012508;                // The current plugin version (Date: YYYYMMDDXX).
 $plugin->requires  = 2014041100;                // Requires this Moodle version.
 $plugin->maturity  = MATURITY_STABLE;           // The current plugin maturity level.
 $plugin->release   = '1.2';                     // The current plugin release.
