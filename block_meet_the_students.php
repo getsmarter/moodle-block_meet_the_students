@@ -49,7 +49,7 @@ class block_meet_the_students extends block_base {
      * Check block formats
      */
     public function applicable_formats() {
-        return array('course' => true);
+        return array('course' => true, 'blocks-meet_the_students' => true);
     }
 
     /**
@@ -88,7 +88,7 @@ class block_meet_the_students extends block_base {
         // Render block contents.
         $this->content = new stdClass;
         $this->content->text = '';
-        $this->content->text .= html_writer::start_tag('div', array('class' => 'meet_the_students'));
+        $this->content->text .= html_writer::start_tag('div', array('class' => 'meet_the_students', 'style' => 'text-align:center'));
 
         if ($canviewuserdetails) {
             $this->content->text .= $this->render_user_pictures($context);
@@ -101,9 +101,8 @@ class block_meet_the_students extends block_base {
         if ($canviewuserdetails) {
             $meetallstudentsurl = new moodle_url('/user/index.php', array('contextid' => $context->id));
             $text = get_string('meetall', 'block_meet_the_students');
-            $meetallstudentsanchor = html_writer::empty_tag('img', array('src' => $OUTPUT->pix_url('i/users'), 'alt' => $text));
-            $meetallstudentsanchor .= ' ' . $text;
-            $this->content->footer = html_writer::link($meetallstudentsurl, $meetallstudentsanchor);
+            $meetallstudentsanchor = $text;
+            $this->content->footer = html_writer::link($meetallstudentsurl, $meetallstudentsanchor, array('style' => 'float:left'));
         }
 
         return $this->content;
@@ -124,7 +123,7 @@ class block_meet_the_students extends block_base {
         $numcolumns = (isset($this->config->numcolumns) ? $this->config->numcolumns : $config->numcolumns) + 1;
         $numrows = (isset($this->config->numrows) ? $this->config->numrows : $config->numrows) + 1;
         $maxusers = $numcolumns * $numrows;
-        $style = 'width: ' . round(100 / $numcolumns, 2) . '%;';
+        $style = '';
 
         // Get the users to display.
         // Only users with specific role.
