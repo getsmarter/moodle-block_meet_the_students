@@ -18,36 +18,3 @@
 .block_meet_the_students .footer {
     text-align: center;
 }
-
-.block_meet_the_students .meet_the_students {
-    font-size: 0px;
-}
-
-.block_meet_the_students .meet_the_students .custom_userpicture_flag td {
-    padding: 0px;
-    margin: 0px;
-}
-/* Temp fix until converted to plugin */
-#page-blocks-meet_the_students-course #region-main .card-block {
-    display: inline;
-    padding: 0;
-    border: none;
-}
-
-#page-blocks-meet_the_students-course [data-region="blocks-column"] {
-    width: 100% !important;
-}
-
-#page-blocks-meet_the_students-course .card-title {
-    font-size: 36px !important;
-    text-align: left;
-}
-
-#page-blocks-meet_the_students-course [data-block="meet_the_students"] .footer a {
-    border-bottom: 1px dashed #bbb !important;
-}
-
-#page-blocks-meet_the_students-course [data-block="meet_the_students"] .footer a:hover {
-    border-bottom: 1px solid !important;
-}
-

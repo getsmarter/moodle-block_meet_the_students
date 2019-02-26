@@ -42,5 +42,3 @@ $string['onlywithrole'] = 'Only Users with a particular role';
 $string['onlywithroledesc'] = 'By default display all users.';
 
 $string['cannotviewuserdetails'] = 'You do not have permission to view user profiles.';
-
-$string['newpluginname'] = 'Classmates';
