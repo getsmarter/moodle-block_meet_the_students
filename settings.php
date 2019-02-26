@@ -29,7 +29,7 @@ if ($ADMIN->fulltree) {
     $title = get_string('numcolumns', 'block_meet_the_students');
     $description = get_string('numcolumnsdesc', 'block_meet_the_students');
     $default = 2;
-    $choices = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    $choices = array(1, 2, 3, 4, 5);
     $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
     $settings->add($setting);
 
