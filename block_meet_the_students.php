@@ -102,7 +102,7 @@ class block_meet_the_students extends block_base {
             $meetallstudentsurl = new moodle_url('/user/index.php', array('contextid' => $context->id));
             $text = get_string('meetall', 'block_meet_the_students');
             $meetallstudentsanchor = $text;
-            $this->content->footer = html_writer::link($meetallstudentsurl, $meetallstudentsanchor, array('style' => 'float:left'));
+            $this->content->footer = html_writer::link($meetallstudentsurl, $meetallstudentsanchor, array('class' => 'btn btn-primary'));
         }
 
         return $this->content;
